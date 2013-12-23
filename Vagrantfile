@@ -18,16 +18,6 @@ Vagrant.configure("2") do |config|
       # Create docker:vagrant user.
       usermod -a -G docker vagrant
 
-      # Install the VirtualBox guest additions. (this may need to reboot machine)
-      # Kernel Headers and dkms are required to build the vbox guest kernel modules.
-      apt-get install -q -y linux-headers-generic-lts-raring dkms
-
-      # Install VBox Guest Additions 4.3.2.
-      wget -cq http://dlc.sun.com.edgesuite.net/virtualbox/4.3.2/VBoxGuestAdditions_4.3.2.iso
-      mount -o loop,ro /home/vagrant/VBoxGuestAdditions_4.3.2.iso /mnt
-      /mnt/VBoxLinuxAdditions.run --nox11
-      umount /mnt
-
       # Done.
       echo 'Done provisioning.'
     EOS
